@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.communitystreet.dao.UserDao">
+    <select id="getUserById" resultMap="selectUser" parameterType="int">
+        select user_id,
+               user_password,
+               user_number,
+               user_name,
+               user_college,
+               user_email,
+               user_phone,
+               user_community_id,
+               user_join_activity_id,
+               user_credits,
+               user_nickname,
+               user_sex,
+               user_nationailty,
+               user_signature
+        from user
+        where user_number = #{id}
+    </select>
+
+    <select id="getUserByPassword" resultMap="selectUser" parameterType="com.communitystreet.domain.ReqUserLogin">
+        select user_id,
+               user_password,
+               user_number,
+               user_name,
+               user_college,
+               user_email,
+               user_phone,
+               user_community_id,
+               user_join_activity_id,
+               user_credits,
+               user_nickname,
+               user_sex,
+               user_nationailty
+        from user
+        where user_password = #{user.password} and user_number = #{user.stuNumber}
+    </select>
+
+
+    <insert id="addOne" parameterType="com.communitystreet.domain.ReqUserRegister">
+        insert into user(user_number, user_email, user_password)
+        values (#{user.stuNumber}, #{user.mailbox}, #{user.password})
+    </insert>
+
+    <update id="updateUserName" parameterType="user">
+        update user set user_name = #{user.name} where user_number = #{user.stuNumber}
+    </update>
+
+    <update id="updateUserGender" parameterType="user">
+        update user set user_sex = #{user.gender} where user_number = #{user.stuNumber}
+    </update>
+
+    <update id="updateUserNickname" parameterType="user">
+        update user set user_nickname = #{user.nickname} where user_number = #{user.stuNumber}
+    </update>
+
+    <update id="updateUserSignature" parameterType="user">
+        update user set user_signature = #{user.signature} where user_number = #{user.stuNumber}
+    </update>
+    <update id="updateUserPassword" parameterType="user">
+        update user set user_password = #{user.password} where user_number = #{user.stuNumber}
+    </update>
+
+    <update id="updateUser" parameterType="user">
+        update user set user_password = #{user.password},
+                        user_name = #{user.name},
+                        user_nickname = #{user.nickname},
+                        user_sex = #{user.gender},
+                        user_signature = #{user.signature}
+        where user_number = #{user.stuNumber};
+    </update>
+
+    <resultMap id="selectUser" type="user">
+        <id property="stuNumber" column="user_number"/>
+        <result property="mailbox" column="user_email"/>
+        <result property="password" column="user_password"/>
+        <result property="stuId" column="user_id"/>
+        <result property="college" column="user_college"/>
+        <result property="phone" column="user_phone"/>
+        <result property="USER_COMMUNITY_ID" column="user_community_id"/>
+        <result property="USER_JOIN_ACTIVITY_ID" column="user_join_activity_id"/>
+        <result property="credit" column="user_credits"/>
+        <result property="nickname" column="user_nickname"/>
+        <result property="name" column="user_name"/>
+        <result property="gender" column="user_sex"/>
+        <result property="nationality" column="user_nationality"/>
+        <result property="CREATE_TIME" column="user_create_time"/>
+        <result property="signature" column="user_signature"/>
+    </resultMap>
+</mapper>

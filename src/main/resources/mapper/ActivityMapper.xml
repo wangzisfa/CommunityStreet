@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.communitystreet.dao.ActivityDao">
+    <select id="getActivity" parameterType="User" resultType="activity">
+        select activity_name,
+               activity_address,
+               activity_participation_MAX,
+               activity_participation,
+               activity_Registration_Start_Time,
+               activity_Registration_Deadline,
+               activity_Start_Time,
+               activity_Deadline,
+               activity_credits,
+               activity_content,
+               activity_picture
+        from activity, user, information where user.user_number = #{user.stuNumber}
+        and user.user_id = information.user_id
+        and information.activity_id = activity.activity_id;
+    </select>
+
+
+<!--    <resultMap id="select" type=""-->
+
+</mapper>
