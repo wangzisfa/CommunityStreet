@@ -6,7 +6,7 @@ import io.swagger.annotations.ApiModelProperty;
 @ApiModel(value = "UserModel")
 public class User {
 	@ApiModelProperty(value = "学号", dataType = "int64", example = "114514")
-	private int stuNumber;
+	private long stuNumber;
 	@ApiModelProperty(value = "邮箱", dataType = "String", example = "72@qq.com")
 	private String mailbox;
 	@ApiModelProperty(value = "密码", dataType = "String", example = "121312931")
@@ -81,11 +81,11 @@ public class User {
 		this.nationality = nationality;
 	}
 
-	public int getStuNumber() {
+	public long getStuNumber() {
 		return stuNumber;
 	}
 
-	public void setStuNumber(int stuNumber) {
+	public void setStuNumber(long stuNumber) {
 		this.stuNumber = stuNumber;
 	}
 

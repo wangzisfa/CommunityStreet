@@ -17,7 +17,7 @@ public interface UserDao {
     int updateUserNickname(@Param("user") User user);
     int updateUserSignature(@Param("user") User user);
     int updateUserPassword(@Param("user") User user);
-    User getUserById(@Param("id") int id);
+    User getUserById(@Param("id") long id);
     User getUserByPassword(@Param("user")ReqUserLogin user);
     void addOne(@Param("user") ReqUserRegister user);
 }

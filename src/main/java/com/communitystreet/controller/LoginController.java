@@ -2,8 +2,6 @@ package com.communitystreet.controller;
 
 
 import com.alibaba.fastjson.JSONObject;
-import com.auth0.jwt.JWT;
-import com.communitystreet.config.jwt.UserLoginToken;
 import com.communitystreet.domain.ReqUserLogin;
 import com.communitystreet.domain.User;
 import com.communitystreet.service.LoginService;

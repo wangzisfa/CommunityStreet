@@ -19,7 +19,7 @@ public class LoginServiceImpl implements LoginService {
     }
 
     @Override
-    public User getUserById(int id) {
+    public User getUserById(long id) {
         return loginDao.getUserById(id);
     }
 }

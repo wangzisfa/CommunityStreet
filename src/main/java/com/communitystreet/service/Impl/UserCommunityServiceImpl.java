@@ -8,8 +8,6 @@ import com.communitystreet.service.UserCommunityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.sql.Time;
-import java.sql.Timestamp;
 import java.util.List;
 
 
@@ -20,18 +18,18 @@ public class UserCommunityServiceImpl implements UserCommunityService {
 
 
     @Override
-    public int createCommunity(Community community, int stuNumber) {
+    public int createCommunity(Community community, long stuNumber) {
         return dao.createCommunity(community, stuNumber);
     }
 
     @Override
-    public List<Community> getCommunities(int stuNumber) {
+    public List<Community> getCommunities(long stuNumber) {
         return dao.getCommunities(stuNumber);
     }
 
     //我创建的社团
     @Override
-    public Community getMyCommunity(int stuNumber) {
+    public Community getMyCommunity(long stuNumber) {
         return dao.getCommunityByAdmin(stuNumber);
     }
 

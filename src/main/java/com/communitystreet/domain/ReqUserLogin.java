@@ -1,13 +1,12 @@
 package com.communitystreet.domain;
 
-import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 @ApiModel(value = "user登录界面请求数据")
 public class ReqUserLogin {
     @ApiModelProperty(value = "学号", dataType = "int64", example = "114514")
-    private int stuNumber;
+    private long stuNumber;
     @ApiModelProperty(value = "密码", dataType = "String", example = "114514")
     private String password;
 
@@ -19,11 +18,11 @@ public class ReqUserLogin {
         this.password = password;
     }
 
-    public int getStuNumber() {
+    public long getStuNumber() {
         return stuNumber;
     }
 
-    public void setStuNumber(int stuNumber) {
+    public void setStuNumber(long stuNumber) {
         this.stuNumber = stuNumber;
     }
 

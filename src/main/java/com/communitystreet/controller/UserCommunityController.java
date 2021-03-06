@@ -5,7 +5,6 @@ import com.alibaba.fastjson.JSONObject;
 import com.communitystreet.config.jwt.UserLoginToken;
 import com.communitystreet.domain.Community;
 import com.communitystreet.service.Impl.TokenServiceImpl;
-import com.communitystreet.service.TokenService;
 import com.communitystreet.service.UserCommunityService;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;

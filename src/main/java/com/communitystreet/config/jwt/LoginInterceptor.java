@@ -21,7 +21,7 @@ public class LoginInterceptor implements HandlerInterceptor {
     LoginService service;
 
     @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
         String token = request.getHeader("Authorization");
         if(!(handler instanceof HandlerMethod)) {
             return true;
@@ -49,7 +49,7 @@ public class LoginInterceptor implements HandlerInterceptor {
                     throw new RuntimeException("401");
                 }
 
-                int userIdInt = Integer.parseInt(userId);
+                long userIdInt = Long.parseLong(userId);
                 User user = service.getUserById(userIdInt);
                 if (user == null) {
                     throw new RuntimeException("用户不存在，请重新登录");
@@ -68,12 +68,12 @@ public class LoginInterceptor implements HandlerInterceptor {
     }
 
     @Override
-    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
+    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) {
 
     }
 
     @Override
-    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
 
     }
 }

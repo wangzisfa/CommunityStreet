@@ -15,7 +15,7 @@
     </select>
 
 <!--    这里的adminid存的是学号-->
-    <select id="getCommunityByAdmin" parameterType="int" resultMap="selectCommunity">
+    <select id="getCommunityByAdmin" parameterType="long" resultMap="selectCommunity">
         select community_name, community_type, community_describe from community where community_administrator_id = #{stuNumber};
     </select>
 
@@ -26,7 +26,7 @@
         select user_id, community_id from user, community where user_number = #{stuNumber} and community_name = #{community.name};
     </insert>
 
-    <select id="getCommunities" resultMap="selectCommunity" parameterType="int">
+    <select id="getCommunities" resultMap="selectCommunity" parameterType="long">
         select community.community_id, community_name,
                 community_creat_time, community_type, community_describe
         from community, information, user

@@ -6,9 +6,9 @@ import com.communitystreet.domain.User;
 import java.util.List;
 
 public interface UserCommunityService {
-    int createCommunity(Community community, int stuNumber);
-    List<Community> getCommunities(int stuNumber);
-    Community getMyCommunity(int stuNumber);
+    int createCommunity(Community community, long stuNumber);
+    List<Community> getCommunities(long stuNumber);
+    Community getMyCommunity(long stuNumber);
     List<Community> getAll();
     boolean UserJoinCommunity(User user, Community community);
     List<Community> getCommunity(String name);

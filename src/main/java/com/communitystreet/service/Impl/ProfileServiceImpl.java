@@ -22,7 +22,7 @@ public class ProfileServiceImpl implements ProfileService {
 
 
     @Override
-    public User getUser(int stuNumber) {
+    public User getUser(long stuNumber) {
         //        user.getDateString();
         return userDao.getUserById(stuNumber);
     }

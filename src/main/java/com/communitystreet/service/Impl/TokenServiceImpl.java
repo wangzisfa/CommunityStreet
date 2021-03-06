@@ -20,7 +20,7 @@ public class TokenServiceImpl implements TokenService {
         return token;
     }
 
-    public static int getStuNumber(String token) {
-        return Integer.parseInt(JWT.decode(token).getAudience().get(0));
+    public static long getStuNumber(String token) {
+        return Long.parseLong(JWT.decode(token).getAudience().get(0));
     }
 }
