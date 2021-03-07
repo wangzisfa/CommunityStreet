@@ -4,7 +4,9 @@ package com.communitystreet.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.communitystreet.config.jwt.UserLoginToken;
 import com.communitystreet.domain.Community;
+import com.communitystreet.domain.User;
 import com.communitystreet.service.Impl.TokenServiceImpl;
+import com.communitystreet.service.LoginService;
 import com.communitystreet.service.UserCommunityService;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +21,9 @@ import java.util.List;
 @CrossOrigin
 public class UserCommunityController {
     @Autowired
-    UserCommunityService service;
+    UserCommunityService communityService;
+    @Autowired
+    LoginService loginService;
 
     @GetMapping(value = "/communityinfo")
     @ResponseBody
@@ -27,9 +31,9 @@ public class UserCommunityController {
     public JSONObject getCommunities(@RequestHeader("Authorization") String token) {
         JSONObject object = new JSONObject();
 
-        List<Community> all = service.getAll();
-        Community myCreateCommunity = service.getMyCommunity(TokenServiceImpl.getStuNumber(token));
-        List<Community> myCommunities = service.getCommunities(TokenServiceImpl.getStuNumber(token));
+        List<Community> all = communityService.getAll();
+        Community myCreateCommunity = communityService.getMyCommunity(TokenServiceImpl.getStuNumber(token));
+        List<Community> myCommunities = communityService.getCommunities(TokenServiceImpl.getStuNumber(token));
 
         object.put("all", all);
         object.put("myCreateCommunity", myCreateCommunity);
@@ -44,7 +48,7 @@ public class UserCommunityController {
     @ResponseBody
     @UserLoginToken
     public Object createCommunity(@RequestHeader("Authorization") String token, @RequestBody Community community) {
-        return service.createCommunity(community, TokenServiceImpl.getStuNumber(token)) == 1;
+        return communityService.createCommunity(community, TokenServiceImpl.getStuNumber(token)) == 1;
     }
 
 
@@ -58,16 +62,18 @@ public class UserCommunityController {
 //        return service.getCommunities(TokenServiceImpl.getStuNumber(token));
 //    }
 
-    @RequestMapping(value = "/join", method = RequestMethod.GET)
+    @GetMapping(value = "/join")
     @ResponseBody
-    public boolean joinCommunity(@RequestBody JSONObject object) {
-        return false;
+    public boolean joinCommunity(@RequestHeader String token, @RequestBody Community community) {
+        User user = loginService.getUserById(TokenServiceImpl.getStuNumber(token));
+
+        return communityService.userJoinCommunity(user, community);
     }
 
     @GetMapping(value = "/search")
     @ResponseBody
     public List<Community> getCommunity(@RequestBody String communityName) {
-        return service.getCommunity(communityName);
+        return communityService.getCommunity(communityName);
     }
 
     @RequestMapping(value = "admin", method = RequestMethod.GET)
