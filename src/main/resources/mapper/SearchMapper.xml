@@ -10,8 +10,8 @@
 
     <select id="searchUserInCommunity" resultType="int">
         select count(*) from information, user, community where information.user_id = user.user_id
-                                                            and user.user_number = #{user.stuNumber}
+                                                            and user.user_number = #{stuNumber}
                                                             and community.community_id = information.community_id
-                                                            and community.community_name = #{community.name}
+                                                            and community.community_name = #{name}
     </select>
 </mapper>

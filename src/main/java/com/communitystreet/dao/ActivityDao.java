@@ -13,8 +13,9 @@ import java.util.List;
 @Repository
 public interface ActivityDao {
     Activity getActivityByUser(@Param("user") User user);
-    Activity getActivityByName(String activityName);
+//    Activity getActivityByName(String activityName);
     int userJoinActivity(User user, Activity activity);
     List<Activity> getActivitiesByUser(User user);
-    List<Activity> getActivities();
+    List<Activity> getActivities(@Param("name") String name);
+    List<Activity> getAll();
 }

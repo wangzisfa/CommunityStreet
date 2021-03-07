@@ -10,8 +10,8 @@
 <!--          and information.community_id = community.community_id;-->
 <!--    </select>-->
 
-    <select id="getCommunityByName" parameterType="String" resultMap="selectCommunity">
-        select community_name, community_type, community_describe from community where community_name like concat('%', #{communityName}, '%');
+    <select id="getCommunityByName" parameterType="java.lang.String" resultMap="selectCommunity">
+        select community_name, community_type, community_describe from community where community_name like concat(concat('%', #{communityName, jdbcType=VARCHAR}), '%')
     </select>
 
 <!--    这里的adminid存的是学号-->
@@ -51,8 +51,8 @@
         insert into information(user_id, community_id)
         select user_id, community_id
         from user, community
-        where user_number = #{user.stuNumber}
-        and community_name = #{community.name};
+        where user_number = #{stuNumber}
+        and community_name = #{name};
     </insert>
 
 

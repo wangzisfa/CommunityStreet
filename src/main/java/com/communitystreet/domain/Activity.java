@@ -30,11 +30,27 @@ public class Activity {
     private double credit;
     @ApiModelProperty(value = "活动内容", dataType = "String", example = "当前活动内容")
     private String content;
-    @ApiModelProperty(value = "活动图片", dataType = "", example = "")
+    @ApiModelProperty(value = "活动图片", dataType = "String", example = "url")
     private String picture;
-
+    private String communityName;
 
     public Activity() {
+    }
+
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
+    }
+
+    public String getCommunityName() {
+        return communityName;
+    }
+
+    public void setCommunityName(String communityName) {
+        this.communityName = communityName;
     }
 
     public int getId() {

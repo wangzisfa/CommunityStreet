@@ -44,17 +44,17 @@ public class UserCommunityServiceImpl implements UserCommunityService {
     }
 
     @Override
-    public boolean userJoinCommunity(User user, Community community) {
-        if (searchDao.searchUserInCommunity(user, community) == 1) {
+    public boolean userJoinCommunity(long stuNumber, String name) {
+        if (searchDao.searchUserInCommunity(stuNumber, name) == 1) {
             return false;
         } else {
-            return communityDao.userJoinCommunity(user, community) == 1;
+            return communityDao.userJoinCommunity(stuNumber, name) == 1;
         }
     }
 
     @Override
-    public List<Community> getCommunity(String name) {
-        return communityDao.getCommnuityByName(name);
+    public List<Community> getCommunityByName(String name) {
+        return communityDao.getCommunityByName(name);
     }
 
     @Override

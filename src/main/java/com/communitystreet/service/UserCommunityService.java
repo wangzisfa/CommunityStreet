@@ -10,7 +10,7 @@ public interface UserCommunityService {
     List<Community> getCommunities(long stuNumber);
     Community getMyCommunity(long stuNumber);
     List<Community> getAll();
-    boolean userJoinCommunity(User user, Community community);
-    List<Community> getCommunity(String name);
+    boolean userJoinCommunity(long stuNumber, String name);
+    List<Community> getCommunityByName(String name);
     boolean isAdmin(User user);
 }

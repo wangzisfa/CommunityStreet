@@ -3,8 +3,9 @@ package com.communitystreet.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.communitystreet.config.jwt.UserLoginToken;
+import com.communitystreet.domain.Activity;
 import com.communitystreet.domain.Community;
-import com.communitystreet.domain.User;
+import com.communitystreet.service.ActivityInfoService;
 import com.communitystreet.service.Impl.TokenServiceImpl;
 import com.communitystreet.service.LoginService;
 import com.communitystreet.service.UserCommunityService;
@@ -13,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -24,6 +26,9 @@ public class UserCommunityController {
     UserCommunityService communityService;
     @Autowired
     LoginService loginService;
+    @Autowired
+    ActivityInfoService activityInfoService;
+
 
     @GetMapping(value = "/communityinfo")
     @ResponseBody
@@ -62,18 +67,37 @@ public class UserCommunityController {
 //        return service.getCommunities(TokenServiceImpl.getStuNumber(token));
 //    }
 
-    @GetMapping(value = "/join")
+    @PostMapping(value = "/join")
     @ResponseBody
-    public boolean joinCommunity(@RequestHeader String token, @RequestBody Community community) {
-        User user = loginService.getUserById(TokenServiceImpl.getStuNumber(token));
-
-        return communityService.userJoinCommunity(user, community);
+    @UserLoginToken
+    @CrossOrigin
+    public boolean joinCommunity(@RequestHeader("Authorization") String token, @RequestBody JSONObject object) {
+//        User user = loginService.getUserById(TokenServiceImpl.getStuNumber(token));
+        String name = object.getString("name");
+//        System.out.println(TokenServiceImpl.getStuNumber(token));
+//        System.out.println(name);
+//        System.out.println(object.getString("name"));
+        return communityService.userJoinCommunity(TokenServiceImpl.getStuNumber(token), name);
     }
 
-    @GetMapping(value = "/search")
+    @PostMapping(value = "/search")
     @ResponseBody
-    public List<Community> getCommunity(@RequestBody String communityName) {
-        return communityService.getCommunity(communityName);
+    @CrossOrigin
+    public JSONObject getCommunity(@RequestBody String name) {
+//        String name = frontName.getString("name");
+        System.out.println(name);
+
+        List<Community> communities = communityService.getCommunityByName(name);
+        List<Activity> activities = activityInfoService.getActivities(name);
+        System.out.println(Arrays.toString(activities.toArray()));
+        System.out.println(Arrays.toString(communities.toArray()));
+
+        JSONObject object = new JSONObject();
+        object.put("communities", communities);
+        object.put("activities", activities);
+
+        return object;
+//        return communityService.getCommunity();
     }
 
     @RequestMapping(value = "admin", method = RequestMethod.GET)

@@ -14,9 +14,9 @@ import java.util.List;
 public interface CommunityDao {
 //    Community getCommunityById(@Param("stuNumber") int stuNumber);
     Community getCommunityByAdmin(@Param("stuNumber") long stuNumber);
-    List<Community> getCommnuityByName(@Param("communityName") String communityName);
+    List<Community> getCommunityByName(String communityName);
     int createCommunity(Community community, @Param("stuNumber") long stuNumber);
-    int userJoinCommunity(@Param("user") User user, @Param("community") Community community);
+    int userJoinCommunity(@Param("stuNumber") long stuNumber, @Param("name") String name);
     // /社团界面的显示社团
     List<Community> getAll();
     // /个人界面中的显示个人加入的社团
