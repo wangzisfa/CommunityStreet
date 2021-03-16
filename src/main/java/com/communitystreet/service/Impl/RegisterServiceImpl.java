@@ -13,6 +13,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.security.GeneralSecurityException;
 import java.util.Properties;
 
@@ -73,13 +74,13 @@ public class RegisterServiceImpl implements RegisterService {
             //邮件发送人
             mimeMessage.setFrom(new InternetAddress("2563609671@qq.com"));
 
-            mailBox = URLDecoder.decode(mailBox,"utf-8");
+            mailBox = URLDecoder.decode(mailBox, StandardCharsets.UTF_8);
 
             //邮件接收人
             mimeMessage.setRecipient(Message.RecipientType.TO,new InternetAddress(mailBox));
 
             //邮件标题
-            mimeMessage.setSubject("欢迎注册commit street");
+            mimeMessage.setSubject("欢迎注册community street");
 
             int radom = (int)((Math.random()) * 1000000);
             //邮件内容
@@ -91,7 +92,7 @@ public class RegisterServiceImpl implements RegisterService {
             //关闭连接
             transport.close();
             return radom;
-        } catch (MessagingException | GeneralSecurityException | UnsupportedEncodingException exception1){
+        } catch (MessagingException | GeneralSecurityException exception1){
             exception1.printStackTrace();
             return  -1;
         }

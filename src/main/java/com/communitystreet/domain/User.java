@@ -2,8 +2,10 @@ package com.communitystreet.domain;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
 
 @ApiModel(value = "UserModel")
+@Data
 public class User {
 	@ApiModelProperty(value = "学号", dataType = "int64", example = "114514")
 	private long stuNumber;
@@ -46,144 +48,144 @@ public class User {
 //	}
 
 
-	public User() {
-	}
-
-	public String getSignature() {
-		return signature;
-	}
-
-	public void setSignature(String signature) {
-		this.signature = signature;
-	}
-
-	public String getGender() {
-		return gender;
-	}
-
-	public void setGender(String gender) {
-		this.gender = gender;
-	}
-
-	//	public String getDate() {
-//		return date;
+//	public User() {
 //	}
 //
-//	public void setDate(String date) {
-//		this.date = date;
-//	}
-
-	public String getNationality() {
-		return nationality;
-	}
-
-	public void setNationality(String nationality) {
-		this.nationality = nationality;
-	}
-
-	public long getStuNumber() {
-		return stuNumber;
-	}
-
-	public void setStuNumber(long stuNumber) {
-		this.stuNumber = stuNumber;
-	}
-
-	public String getMailbox() {
-		return mailbox;
-	}
-
-	public void setMailbox(String mailbox) {
-		this.mailbox = mailbox;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public int getStuId() {
-		return stuId;
-	}
-
-	public void setStuId(int stuId) {
-		this.stuId = stuId;
-	}
-
-	public String getCollege() {
-		return college;
-	}
-
-	public void setCollege(String college) {
-		this.college = college;
-	}
-
-	public int getPhone() {
-		return phone;
-	}
-
-	public void setPhone(int phone) {
-		this.phone = phone;
-	}
-
-	public int getUSER_COMMUNITY_ID() {
-		return USER_COMMUNITY_ID;
-	}
-
-	public void setUSER_COMMUNITY_ID(int USER_COMMUNITY_ID) {
-		this.USER_COMMUNITY_ID = USER_COMMUNITY_ID;
-	}
-
-	public int getUSER_JOIN_ACTIVITY_ID() {
-		return USER_JOIN_ACTIVITY_ID;
-	}
-
-	public void setUSER_JOIN_ACTIVITY_ID(int USER_JOIN_ACTIVITY_ID) {
-		this.USER_JOIN_ACTIVITY_ID = USER_JOIN_ACTIVITY_ID;
-	}
-
-	public double getCredit() {
-		return credit;
-	}
-
-	public void setCredit(double credit) {
-		this.credit = credit;
-	}
-
-	public String getNickname() {
-		return nickname;
-	}
-
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-
-//	public Timestamp getCREATE_TIME() {
-//		return CREATE_TIME;
+//	public String getSignature() {
+//		return signature;
 //	}
 //
-//	public void setCREATE_TIME(Timestamp CREATE_TIME) {
-//		this.CREATE_TIME = CREATE_TIME;
+//	public void setSignature(String signature) {
+//		this.signature = signature;
 //	}
-
-	@Override
-	public String toString() {
-		return "User{" +
-				"stuNumber=" + stuNumber +
-				", mailbox='" + mailbox + '\'' +
-				", password='" + password + '\'' +
-				'}';
-	}
+//
+//	public String getGender() {
+//		return gender;
+//	}
+//
+//	public void setGender(String gender) {
+//		this.gender = gender;
+//	}
+//
+//	//	public String getDate() {
+////		return date;
+////	}
+////
+////	public void setDate(String date) {
+////		this.date = date;
+////	}
+//
+//	public String getNationality() {
+//		return nationality;
+//	}
+//
+//	public void setNationality(String nationality) {
+//		this.nationality = nationality;
+//	}
+//
+//	public long getStuNumber() {
+//		return stuNumber;
+//	}
+//
+//	public void setStuNumber(long stuNumber) {
+//		this.stuNumber = stuNumber;
+//	}
+//
+//	public String getMailbox() {
+//		return mailbox;
+//	}
+//
+//	public void setMailbox(String mailbox) {
+//		this.mailbox = mailbox;
+//	}
+//
+//	public String getPassword() {
+//		return password;
+//	}
+//
+//	public void setPassword(String password) {
+//		this.password = password;
+//	}
+//
+//	public int getStuId() {
+//		return stuId;
+//	}
+//
+//	public void setStuId(int stuId) {
+//		this.stuId = stuId;
+//	}
+//
+//	public String getCollege() {
+//		return college;
+//	}
+//
+//	public void setCollege(String college) {
+//		this.college = college;
+//	}
+//
+//	public int getPhone() {
+//		return phone;
+//	}
+//
+//	public void setPhone(int phone) {
+//		this.phone = phone;
+//	}
+//
+//	public int getUSER_COMMUNITY_ID() {
+//		return USER_COMMUNITY_ID;
+//	}
+//
+//	public void setUSER_COMMUNITY_ID(int USER_COMMUNITY_ID) {
+//		this.USER_COMMUNITY_ID = USER_COMMUNITY_ID;
+//	}
+//
+//	public int getUSER_JOIN_ACTIVITY_ID() {
+//		return USER_JOIN_ACTIVITY_ID;
+//	}
+//
+//	public void setUSER_JOIN_ACTIVITY_ID(int USER_JOIN_ACTIVITY_ID) {
+//		this.USER_JOIN_ACTIVITY_ID = USER_JOIN_ACTIVITY_ID;
+//	}
+//
+//	public double getCredit() {
+//		return credit;
+//	}
+//
+//	public void setCredit(double credit) {
+//		this.credit = credit;
+//	}
+//
+//	public String getNickname() {
+//		return nickname;
+//	}
+//
+//	public void setNickname(String nickname) {
+//		this.nickname = nickname;
+//	}
+//
+//	public String getName() {
+//		return name;
+//	}
+//
+//	public void setName(String name) {
+//		this.name = name;
+//	}
+//
+//
+////	public Timestamp getCREATE_TIME() {
+////		return CREATE_TIME;
+////	}
+////
+////	public void setCREATE_TIME(Timestamp CREATE_TIME) {
+////		this.CREATE_TIME = CREATE_TIME;
+////	}
+//
+//	@Override
+//	public String toString() {
+//		return "User{" +
+//				"stuNumber=" + stuNumber +
+//				", mailbox='" + mailbox + '\'' +
+//				", password='" + password + '\'' +
+//				'}';
+//	}
 }

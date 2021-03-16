@@ -13,7 +13,7 @@ public class ReqUserLogin {
     public ReqUserLogin() {
     }
 
-    public ReqUserLogin(int stuNumber, String password) {
+    public ReqUserLogin(long stuNumber, String password) {
         this.stuNumber = stuNumber;
         this.password = password;
     }

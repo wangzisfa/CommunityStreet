@@ -19,6 +19,7 @@ public class ActivityController {
 
     @GetMapping
     @ResponseBody
+    @CrossOrigin
     public List<Activity> getAll() {
         return service.getAll();
     }
