@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.communitystreet.dao.ActivityDao">
+    <select id="getAll" resultMap="selectActivity">
+        select activity_name,
+               activity_address,
+               activity_participation_MAX,
+               activity_participation,
+               activity_Registration_Start_Time,
+               activity_Registration_Deadline,
+               activity_Start_Time,
+               activity_Deadline,
+               activity_credits,
+               activity_content,
+               activity_picture,
+               activity_community_name
+        from activity;
+    </select>
+
+
+    <select id="getActivity" parameterType="User" resultType="activity">
+        select activity_name,
+               activity_address,
+               activity_participation_MAX,
+               activity_participation,
+               activity_Registration_Start_Time,
+               activity_Registration_Deadline,
+               activity_Start_Time,
+               activity_Deadline,
+               activity_credits,
+               activity_content,
+               activity_picture,
+               activity_community_name
+        from activity, user, information where user.user_number = #{user.stuNumber}
+        and user.user_id = information.user_id
+        and information.activity_id = activity.activity_id;
+    </select>
+
+    <select id="getActivities" parameterType="String" resultMap="selectActivity">
+        select activity_name,
+                activity_address,
+                activity_participation_MAX,
+                activity_participation,
+                activity_Registration_Start_Time,
+                activity_Registration_Deadline,
+                activity_Start_Time,
+                activity_Deadline,
+                activity_credits,
+                activity_content,
+                activity_picture,
+                activity_community_name
+        from activity where activity_name like concat(concat('%', #{name}), '%');
+    </select>
+
+    <resultMap id="selectActivity" type="com.communitystreet.domain.Activity">
+        <id property="id" column="activity_id"/>
+        <result property="name" column="activity_name"/>
+        <result property="address" column="activity_address"/>
+        <result property="PARTICIPATION_MAXVALUE" column="activity_participation_MAX"/>
+        <result property="PARTICIPATION_COUNT" column="activity_participation"/>
+        <result property="REGISTRATION_START_TIME" column="activity_Registration_Start_Time"/>
+        <result property="REGISTRATION_DEADLINE" column="activity_Registration_Deadline"/>
+        <result property="ACTIVITY_START_TIME" column="activity_Start_Time"/>
+        <result property="ACTIVITY_DEADLINE" column="activity_Deadline"/>
+        <result property="credit" column="activity_credits"/>
+        <result property="content" column="activity_content"/>
+        <result property="picture" column="activity_picture"/>
+        <result property="communityName" column="activity_community_name"/>
+    </resultMap>
+<!--    <resultMap id="select" type=""-->
+
+</mapper>

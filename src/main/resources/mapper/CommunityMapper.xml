@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.communitystreet.dao.CommunityDao">
+<!--    <select id="getCommunityById" parameterType="int" resultType="community">-->
+<!--        select community.* from community, information, user-->
+<!--        where information.user_id = user.user_id-->
+<!--          and user.user_number = #{stuNumber}-->
+<!--          and information.community_id = community.community_id;-->
+<!--    </select>-->
+
+    <select id="getCommunityByName" parameterType="java.lang.String" resultMap="selectCommunity">
+        select community_name, community_type, community_describe from community where community_name like concat(concat('%', #{communityName, jdbcType=VARCHAR}), '%')
+    </select>
+
+<!--    这里的adminid存的是学号-->
+    <select id="getCommunityByAdmin" parameterType="long" resultMap="selectCommunity">
+        select community_name, community_type, community_describe from community where community_administrator_id = #{stuNumber};
+    </select>
+
+    <insert id="createCommunity">
+        insert into community(community_name, community_describe, community_type) values(#{community.name}, #{community.describe}, #{community.type});
+        update community set community_administrator_id = #{stuNumber} where community_name = #{community.name};
+        insert into information(user_id, community_id)
+        select user_id, community_id from user, community where user_number = #{stuNumber} and community_name = #{community.name};
+    </insert>
+
+    <select id="getCommunities" resultMap="selectCommunity" parameterType="long">
+        select community.community_id, community_name,
+                community_creat_time, community_type, community_describe
+        from community, information, user
+        where user.user_number = #{stuNumber}
+          and
+              user.user_id = information.user_id
+          and
+              information.community_id = community.community_id;
+    </select>
+
+
+    <select id="getAll" resultMap="selectCommunity">
+        select community_id,
+               community_name,
+               community_creat_time,
+               community_describe,
+               community_type
+        from community;
+    </select>
+
+    <insert id="userJoinCommunity">
+        insert into information(user_id, community_id)
+        select user_id, community_id
+        from user, community
+        where user_number = #{stuNumber}
+        and community_name = #{name};
+    </insert>
+
+
+    <resultMap id="selectCommunity" type="com.communitystreet.domain.Community">
+        <id property="id" column="community_id"/>
+        <result property="name" column="community_name"/>
+        <result property="CREATE_TIME_SQL" column="community_create_time"/>
+        <result property="describe" column="community_describe"/>
+        <result property="type" column="community_type"/>
+    </resultMap>
+
+
+
+<!--    <resultMap id="selectCommunity" type="community">-->
+<!--        <id property="id" column="community_id"/>-->
+<!--        <result property="name" column="community_name"/>-->
+<!--        <result property="COMMUNITY_ADMINISTRATOR_ID" column="community-->
+<!--_administrator_id"/>-->
+<!--        <result property="COMMUNITY_ACTIVITY_ID" column="community_activity_id"/>-->
+<!--        <result property="COMMUNITY_MEMBER_ID" column="community_member_id"/>-->
+<!--        <result property="CREATE_TIME_SQL" column="community_creat_time"/>-->
+<!--    </resultMap>-->
+</mapper>
